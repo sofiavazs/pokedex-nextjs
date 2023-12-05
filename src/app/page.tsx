@@ -1,13 +1,15 @@
-import PokemonList from './components/PokemonList';
-import { getPokemonList } from './api/pokemons';
+import { getAllPokemons } from './api/pokemons';
+import Header from './components/Header';
+import SearchList from './components/SearchList';
 
 
 export default async function Home() {
-  const pokemonList = await getPokemonList();
+  const pokemonList = await getAllPokemons();
+
   return (
     <>
-      <h1>pokemons</h1>
-      <PokemonList pokemonData={pokemonList} />
+      <Header headerText={"Pokémons!"} />
+      <SearchList pokemonData={pokemonList} />
     </>
   )
 }

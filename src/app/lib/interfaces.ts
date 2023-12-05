@@ -1,11 +1,31 @@
 interface PokemonListResponse {
   count: number;
   next: string;
-  results: Pokemon[];
-  previous: boolean;
+  previous: string;
+  results: PokemonNameAndUrl[];
+}
+
+interface PokemonNameAndUrl {
+  name: string;
+  url: string;
 }
 
 interface Pokemon {
   name: string;
-  url: string;
+  id: number,
+  sprites:{
+    other: {
+      official_artwork :{
+        front_default : string
+      }
+    }
+  }
+  stats: {
+    base_stat: number,
+  }[];
+  abilities: {
+    ability: {
+      name: string;
+    }
+  }[];
 }
