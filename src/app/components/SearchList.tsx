@@ -1,6 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
+
+import { getPokemon } from "../../api/pokemons";
+import { useDebounce } from "../../helpers/useDebounce";
 import Card from "./Card";
 
 interface PokemonListProps {
@@ -8,13 +11,24 @@ interface PokemonListProps {
 }
 
 const SearchList: React.FC<PokemonListProps> = ({ pokemonData }) => {
+  const [searchResponse, setSearchResponse] = useState<Pokemon | undefined>(undefined);
   const [search, setSearch] = useState<string>("");
+  const [error, setError] = useState(undefined);
+  const debouncedValue = useDebounce<string>(search, 1000);
+  const formattedSearch = search.toLowerCase();
 
-  const searchFilter = (pokemonData: PokemonListResponse) => {
-    return pokemonData.results.filter((pokemon) => pokemon.name.toLowerCase().includes(search.toLowerCase()))
-  };
+  useEffect(() => {
+    if (search.length > 0) {
+      getPokemon(formattedSearch).then((response) => {
+        setSearchResponse(response);
+      }).catch((error) => {
+        setError(error.message);
+      })
+    }
+    setSearchResponse(undefined);
+    setError(undefined);
+  }, [debouncedValue]);
 
-  const filteredList = searchFilter(pokemonData)
 
   return (
     <Container>
@@ -29,17 +43,26 @@ const SearchList: React.FC<PokemonListProps> = ({ pokemonData }) => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </SearchBoxWrapper>
-      <GridContainer>
-        {filteredList.map((pokemon, index) => {
-          return (
+      {error ? <p>NOT FOUND</p> : (
+        <GridContainer>
+          {searchResponse ? (
             <Card
-              key={index}
-              name={pokemon.name}
-              url={pokemon.url}
+              name={searchResponse.name}
+              id={searchResponse.id}
             />
-          );
-        })}
-      </GridContainer>
+          ) : (
+            pokemonData.results.map((pokemon, index) => {
+              return (
+                <Card
+                  key={index}
+                  name={pokemon.name}
+                  url={pokemon.url}
+                />
+              );
+            })
+          )}
+        </GridContainer>
+      )}
     </Container>
   );
 };

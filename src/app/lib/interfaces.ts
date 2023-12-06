@@ -2,17 +2,20 @@ interface PokemonListResponse {
   count: number;
   next: string;
   previous: string;
-  results: PokemonNameAndUrl[];
+  results: {
+    name: string;
+    url: string;
+  }[];
 }
 
-interface PokemonNameAndUrl {
-  name: string;
-  url: string;
-}
 
 interface Pokemon {
   name: string;
   id: number,
+  species: {
+    name: string,
+    url: string,
+  }
   sprites:{
     other: {
       official_artwork :{

@@ -1,15 +1,16 @@
 "use client";
 import Link from "next/link";
 import { styled } from "styled-components";
-import { capitalize } from "../helpers/capitalize";
 
 interface PokemonCardProps {
   name: string;
-  url: string;
+  url?: string;
+  image?: string;
+  id?: number
 }
 
-const Card: React.FC<PokemonCardProps> = ({ name, url }) => {
-  const pokemonId = url.split('pokemon/')[1].split('/')[0];
+const Card: React.FC<PokemonCardProps> = ({ name, url, id }) => {
+  const pokemonId = url ? url?.split('pokemon/')[1]?.split('/')[0] : id;
   const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
 
   return (
@@ -18,7 +19,7 @@ const Card: React.FC<PokemonCardProps> = ({ name, url }) => {
         href={name}
         rel="noopener noreferrer"
       >
-        <h2>{capitalize(name)}</h2>
+        <h2>{name}</h2>
         <img
           src={imageUrl}
         />
@@ -51,6 +52,7 @@ const StyledLink = styled(Link)`
 
   h2 {
     align-self: center;
+    text-transform: capitalize;
   }
 
   img {
