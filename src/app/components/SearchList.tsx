@@ -72,7 +72,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 5rem;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
 `;
 
 const SearchBoxWrapper = styled.div`
