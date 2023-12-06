@@ -67,29 +67,29 @@ const PaginationWrapper = styled.div`
 
     &:hover {
       color: #7d0cad;
-    }
-  }
+    };
+  };
 
   .previous-button::before {
-	  display: inline-block;
+    display: inline-block;
     border-style: solid;
-	  border-width: 4px 4px 0 0;
-	  content: '';
-	  width: 1rem;
-	  height: 1rem;
-	  transform: rotate(225deg);
-	  vertical-align: top;
-  }
+    border-width: 4px 4px 0 0;
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    transform: rotate(225deg);
+    vertical-align: top;
+  };
 
   .next-button::before {
-	  display: inline-block;
+    display: inline-block;
     border-style: solid;
-	  border-width: 4px 4px 0 0;
-	  content: '';
-	  width: 1rem;
-	  height: 1rem;
-	  transform: rotate(45deg);
-	  vertical-align: top;
-  }
+    border-width: 4px 4px 0 0;
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    transform: rotate(45deg);
+    vertical-align: top;
+  };
 `;
 
