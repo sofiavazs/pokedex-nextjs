@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getPokemon } from "../api/pokemons";
+import { getPokemon } from "../../api/pokemons";
 
 export default async function PageDetails({ params }: { params: { name: string } }) {
   const { name } = params;
