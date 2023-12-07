@@ -10,10 +10,9 @@ import StatsBar from "../components/StatsBar";
 interface Props {
   pokemon: Pokemon;
   evolutionChainId: string;
-  hasEvolution: boolean;
 }
 
-const DetailsPage: React.FC<Props> = ({ pokemon, evolutionChainId, hasEvolution }) => {
+const DetailsPage: React.FC<Props> = ({ pokemon, evolutionChainId }) => {
   const [evolutionResponse, setEvolutionResponse] = useState<EvolutionChain | undefined>(undefined);
   const firstInChainId = evolutionResponse?.chain.species.url.split('pokemon-species/')[1]?.split('/')[0];
   const firstInChainImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${firstInChainId}.svg`;

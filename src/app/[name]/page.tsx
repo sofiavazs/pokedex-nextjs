@@ -6,14 +6,12 @@ export default async function Page({ params }: { params: { name: string } }) {
   const pokemon = await getPokemon(name);
   const pokemonSpecies = await getPokemonSpecies(name);
   const evolutionChainId = pokemonSpecies.evolution_chain.url.split('evolution-chain/')[1]?.split('/')[0];
-  const hasEvolution = pokemonSpecies.order < 3;
 
   return (
     <>
       <DetailsPage
         pokemon={pokemon}
         evolutionChainId={evolutionChainId}
-        hasEvolution={hasEvolution}
       />
     </>
   )
