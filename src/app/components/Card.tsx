@@ -15,15 +15,10 @@ const Card: React.FC<PokemonCardProps> = ({ name, url, id }) => {
 
   return (
     <>
-      <StyledLink
-        href={name}
-        rel="noopener noreferrer"
-      >
+      <StyledLink href={name} rel="noopener noreferrer">
         <h2>{name}</h2>
-        <img
-          src={imageUrl}
-        />
-
+        <img src={imageUrl} alt={name} />
+        <p>View Details {">>"}</p>
       </StyledLink>
     </>
   );
@@ -36,9 +31,9 @@ const StyledLink = styled(Link)`
   margin: 1rem;
   justify-content: center;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   background: rgba(255, 255, 255, 0.175);
-  border-radius: 16px;
+  border-radius: 1rem;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(6.5px);
   -webkit-backdrop-filter: blur(6.5px);
@@ -51,8 +46,14 @@ const StyledLink = styled(Link)`
   }
 
   h2 {
+    color: #1b3f68;
     align-self: center;
     text-transform: capitalize;
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: #007580;
   }
 
   img {

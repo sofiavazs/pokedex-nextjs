@@ -3,7 +3,9 @@ body {
   width: 100vw;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  margin: 0;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: rgb(243, 248, 252);
 }
 
 main {

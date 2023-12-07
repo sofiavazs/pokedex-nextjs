@@ -3,7 +3,6 @@ import { getAllPokemons } from '../api/pokemons';
 import SearchList from './components/SearchList';
 import Pagination from './components/Pagination';
 
-
 export default async function Home({
   searchParams,
 }: {

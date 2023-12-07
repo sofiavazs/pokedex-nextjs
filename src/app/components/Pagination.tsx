@@ -67,8 +67,8 @@ const PaginationWrapper = styled.div`
 
     &:hover {
       color: #7d0cad;
-    };
-  };
+    }
+  }
 
   .previous-button::before {
     display: inline-block;
@@ -90,6 +90,6 @@ const PaginationWrapper = styled.div`
     height: 1rem;
     transform: rotate(45deg);
     vertical-align: top;
-  };
+  }
 `;
 
