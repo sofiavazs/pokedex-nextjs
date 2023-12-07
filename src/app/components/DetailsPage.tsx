@@ -37,35 +37,30 @@ const DetailsPage: React.FC<Props> = ({ pokemon, evolutionChainId, hasEvolution 
           <h2>{pokemon.name}</h2>
           <img src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.name} />
           <h2>Evolution Chain</h2>
-          {hasEvolution ? (
-
-            <EvolutionChainContainer>
-              <div>
-                <img className="evolution-img" src={firstInChainImageUrl} />
-                <p>{evolutionResponse?.chain.species.name}</p>
-              </div>
-              {evolutionResponse?.chain.evolves_to.map((e, i) => {
-                const secondInChainId = e.species.url.split('pokemon-species/')[1]?.split('/')[0];
-                const thirdInChainId = e.evolves_to[0]?.species.url.split('pokemon-species/')[1]?.split('/')[0];
-                const secondInChainImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${secondInChainId}.svg`;
-                const thirdInChainImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${thirdInChainId}.svg`;
-                return (
-                  <React.Fragment key={i}>
-                    <div>
-                      <img className="evolution-img" src={secondInChainImageUrl} />
-                      <p>{e.species.name}</p>
-                    </div>
-                    <div>
-                      <img className="evolution-img" src={thirdInChainImageUrl} />
-                      <p>{e.evolves_to[0]?.species.name}</p>
-                    </div>
-                  </React.Fragment>
-                );
-              })}
-            </EvolutionChainContainer>
-          ) : (
-            <p>This pokémon has no evolution chain 💥</p>
-          )}
+          <EvolutionChainContainer>
+            <div>
+              <img className="evolution-img" src={firstInChainImageUrl} />
+              <p>{evolutionResponse?.chain.species.name}</p>
+            </div>
+            {evolutionResponse?.chain.evolves_to.map((e, i) => {
+              const secondInChainId = e.species.url.split('pokemon-species/')[1]?.split('/')[0];
+              const thirdInChainId = e.evolves_to[0]?.species.url.split('pokemon-species/')[1]?.split('/')[0];
+              const secondInChainImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${secondInChainId}.svg`;
+              const thirdInChainImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${thirdInChainId}.svg`;
+              return (
+                <React.Fragment key={i}>
+                  <div>
+                    <img className="evolution-img" src={secondInChainImageUrl} />
+                    <p>{e.species.name}</p>
+                  </div>
+                  <div>
+                    <img className="evolution-img" src={thirdInChainImageUrl} />
+                    <p>{e.evolves_to[0]?.species.name}</p>
+                  </div>
+                </React.Fragment>
+              );
+            })}
+          </EvolutionChainContainer>
         </StyledSection>
         <StyledSection>
           <div className="types-abilities-wrapper">
