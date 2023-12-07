@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
+import PuffLoader from "react-spinners/PuffLoader";
+
 import { getAllPokemons } from '../api/pokemons';
 import SearchList from './components/SearchList';
-import Pagination from './components/Pagination';
 
 export default async function Home({
   searchParams,
@@ -19,9 +20,12 @@ export default async function Home({
 
   return (
     <>
-      <Suspense key={currentPage} fallback={"loading.."}>
-        <SearchList pokemonData={pokemonList} />
-        <Pagination
+      <Suspense
+        key={currentPage}
+        fallback={<PuffLoader color="#7d0cad" size={100} cssOverride={{ position: "absolute", top: "50vh", right: "50vw" }}
+        />}>
+        <SearchList
+          pokemonData={pokemonList}
           totalCount={pokemonList.count}
           limit={limit}
         />

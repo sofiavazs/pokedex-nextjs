@@ -1,4 +1,5 @@
 "use client"
+import React from "react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
@@ -14,6 +15,9 @@ interface Props {
 
 const DetailsPage: React.FC<Props> = ({ pokemon, evolutionChainId, hasEvolution }) => {
   const [evolutionResponse, setEvolutionResponse] = useState<EvolutionChain | undefined>(undefined);
+  const firstInChainId = evolutionResponse?.chain.species.url.split('pokemon-species/')[1]?.split('/')[0];
+  const firstInChainImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${firstInChainId}.svg`;
+
 
   useEffect(() => {
     if (evolutionChainId) {
@@ -32,35 +36,36 @@ const DetailsPage: React.FC<Props> = ({ pokemon, evolutionChainId, hasEvolution 
         <StyledSection>
           <h2>{pokemon.name}</h2>
           <img src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.name} />
-          {evolutionResponse?.chain.evolves_to.map((e, i) => {
-            const isSamePokemon = e.species.name === pokemon.name;
-            const id = e.species.url.split('pokemon-species/')[1]?.split('/')[0];
-            const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
-            return (
-              <div key={i}>
-                {!isSamePokemon && hasEvolution &&
-                  <>
-                    <p>{e.species.name}</p>
-                    <img src={imageUrl} />
-                  </>
-                }
-                {e.evolves_to.map((e, i) => {
-                  const id = e.species.url.split('pokemon-species/')[1]?.split('/')[0];
-                  const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
-                  return (
-                    <div key={i}>
-                      {hasEvolution &&
-                        <>
-                          <p>{e.species.name}</p>
-                          <img src={imageUrl} />
-                        </>
-                      }
-                    </div>
-                  )
-                })}
+          <h2>Evolution Chain</h2>
+          {hasEvolution ? (
+
+            <EvolutionChainContainer>
+              <div>
+                <img className="evolution-img" src={firstInChainImageUrl} />
+                <p>{evolutionResponse?.chain.species.name}</p>
               </div>
-            )
-          })}
+              {evolutionResponse?.chain.evolves_to.map((e, i) => {
+                const secondInChainId = e.species.url.split('pokemon-species/')[1]?.split('/')[0];
+                const thirdInChainId = e.evolves_to[0]?.species.url.split('pokemon-species/')[1]?.split('/')[0];
+                const secondInChainImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${secondInChainId}.svg`;
+                const thirdInChainImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${thirdInChainId}.svg`;
+                return (
+                  <React.Fragment key={i}>
+                    <div>
+                      <img className="evolution-img" src={secondInChainImageUrl} />
+                      <p>{e.species.name}</p>
+                    </div>
+                    <div>
+                      <img className="evolution-img" src={thirdInChainImageUrl} />
+                      <p>{e.evolves_to[0]?.species.name}</p>
+                    </div>
+                  </React.Fragment>
+                );
+              })}
+            </EvolutionChainContainer>
+          ) : (
+            <p>This pokémon has no evolution chain 💥</p>
+          )}
         </StyledSection>
         <StyledSection>
           <div className="types-abilities-wrapper">
@@ -85,7 +90,7 @@ const DetailsPage: React.FC<Props> = ({ pokemon, evolutionChainId, hasEvolution 
             <h2>Base Stats</h2>
             {pokemon.stats.map((item, index) => {
               return (
-                <div key={index}>{item.stat.name} <StatsBar value={item.base_stat} /></div>
+                <div key={index}><span>{item.stat.name}</span><StatsBar value={item.base_stat} /></div>
               )
             })}
           </div>
@@ -94,33 +99,35 @@ const DetailsPage: React.FC<Props> = ({ pokemon, evolutionChainId, hasEvolution 
     </PageContainer>
   )
 };
-
 export default DetailsPage;
 
 const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 80vh;
+  height: 100vh;
 
   a {
+    display: flex;
     text-decoration: none;
     font-size: 1.5rem;
     color: #063539;
-    margin: 3rem 0 0 1rem;
+    margin: 1rem 0 1rem 1rem;
+
+    &:hover {
+      color: #0c67ad;
+      transform: translateX(-10px);
+      transition: 0.3s ease-in;
+    }
   }
 `;
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
   width: 80vw;
+  justify-content: space-evenly;
   background: white;
   margin: auto;
-  padding: 1.5rem;
+  padding: 2rem 1rem 1rem 1rem;
   border-radius: 1rem;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(6.5px);
-  -webkit-backdrop-filter: blur(6.5px);
   border: 1px solid rgba(255, 255, 255, 0.51);
 
   h2 {
@@ -130,8 +137,9 @@ const Wrapper = styled.div`
   }
 
   img {
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 200px;
+    max-height: 200px;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -145,6 +153,40 @@ const StyledSection = styled.section`
     display: flex;
     flex-direction: row;
     width: 100%;
+
+    div:first-child {
+      margin-right: 5rem;
+    }
+  }
+  .base-stats {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 1rem;
+  }
+`;
+
+const EvolutionChainContainer = styled.div`
+  display: flex;
+  padding: 8px;
+  align-items: baseline;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    align-items: center;
+
+    img {
+      max-width: 50px;
+      max-height: 50px;
+      margin: 0;
+    }
+
+    p {
+      text-transform: capitalize;
+      margin: 0;
+    }
   }
 `;
 

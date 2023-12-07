@@ -61,5 +61,9 @@ interface Evolution {
 interface EvolutionChain {
   chain: {
     evolves_to: Evolution[];
+    species: {
+      name: string;
+      url: string;
+    }
   }
 }

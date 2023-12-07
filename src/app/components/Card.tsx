@@ -54,6 +54,10 @@ const StyledLink = styled(Link)`
   p {
     font-size: 1.25rem;
     color: #007580;
+
+    &:hover {
+      color:#0c67ad
+    }
   }
 
   img {

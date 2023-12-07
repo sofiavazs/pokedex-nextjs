@@ -10,7 +10,11 @@ export default async function Page({ params }: { params: { name: string } }) {
 
   return (
     <>
-      <DetailsPage pokemon={pokemon} evolutionChainId={evolutionChainId} hasEvolution={hasEvolution} />
+      <DetailsPage
+        pokemon={pokemon}
+        evolutionChainId={evolutionChainId}
+        hasEvolution={hasEvolution}
+      />
     </>
   )
 };

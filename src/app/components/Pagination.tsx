@@ -65,8 +65,8 @@ const PaginationWrapper = styled.div`
     border: none;
     cursor: pointer;
 
-    &:hover {
-      color: #7d0cad;
+    &:hover:not([disabled]) {
+      color: #0c67ad;
     }
   }
 

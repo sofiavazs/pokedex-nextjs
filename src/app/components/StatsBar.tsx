@@ -11,8 +11,6 @@ const StatsBar: React.FC<Props> = ({ value }) => {
       <Bar value={value}>
         <LabelStyles>{value}</LabelStyles>
       </Bar>
-
-
     </Container>
   )
 };
@@ -21,12 +19,12 @@ export default StatsBar;
 const Container = styled.div`
   width: 100%;
   background-color: "#e0e0de";
-  border-radius: 50;
-  margin: 50;
+  border-radius: 50px;
+  margin-top: 5px;
 `;
 
 const Bar = styled.div<{ value: number }>`
-  width: ${(props) => props.value + "%"} ;
+  width: ${(props) => props.value < 100 ? props.value + "%" : 100} ;
   background-color: #82b8db;
   border-radius: inherit;
   text-align: center;
@@ -34,6 +32,6 @@ const Bar = styled.div<{ value: number }>`
 
 const LabelStyles = styled.span`
   padding: 5px;
-  color: 'white';
+  color: #fff;
   font-weight: 'bold';
 `;

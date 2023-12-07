@@ -16,7 +16,7 @@ const Header: React.FC<Props> = ({ headerText }) => {
 
 const StyledHeader = styled.header`
   width: 100vw;
-  height: 100px;
+  height: 5rem;
   display: flex;
   justify-content: flex-start;
   position: sticky;
