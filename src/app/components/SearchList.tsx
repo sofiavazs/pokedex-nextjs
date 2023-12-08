@@ -7,7 +7,6 @@ import { getPokemon } from "../../api/pokemons";
 import { useDebounce } from "../../helpers/useDebounce";
 import Card from "./Card";
 import Pagination from "./Pagination";
-import ErrorMessage from "./EmptySearchResult";
 import EmptySearchResult from "./EmptySearchResult";
 
 interface PokemonListProps {
