@@ -1,5 +1,5 @@
 import { getPokemon, getPokemonSpecies } from "../../api/pokemons";
-import DetailsPage from "../components/DetailsPage"
+import DetailsPage from "../components/DetailsPage/DetailsPage"
 
 export default async function Page({ params }: { params: { name: string } }) {
   const { name } = params;

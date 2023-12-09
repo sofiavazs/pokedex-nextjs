@@ -10,9 +10,10 @@ const Header: React.FC<Props> = ({ headerText }) => {
     <StyledHeader>
       <h1>{headerText}</h1>
     </StyledHeader>
-
   );
 };
+
+export default Header;
 
 const StyledHeader = styled.header`
   width: 100vw;
@@ -29,5 +30,3 @@ const StyledHeader = styled.header`
   -moz-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 `;
-
-export default Header;

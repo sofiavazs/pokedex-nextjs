@@ -2,14 +2,14 @@
 import Link from "next/link";
 import { styled } from "styled-components";
 
-interface PokemonCardProps {
+interface CardProps {
   name: string;
   url?: string;
   image?: string;
   id?: number
 }
 
-const Card: React.FC<PokemonCardProps> = ({ name, url, id }) => {
+const Card: React.FC<CardProps> = ({ name, url, id }) => {
   const pokemonId = url ? url?.split('pokemon/')[1]?.split('/')[0] : id;
   const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
 
@@ -23,6 +23,7 @@ const Card: React.FC<PokemonCardProps> = ({ name, url, id }) => {
     </>
   );
 };
+
 export default Card;
 
 const StyledLink = styled(Link)`

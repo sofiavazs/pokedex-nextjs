@@ -1,19 +1,20 @@
 "use client";
 import { styled } from "styled-components";
 
-interface Props {
+interface StatsBarProps {
   value: number;
 }
 
-const StatsBar: React.FC<Props> = ({ value }) => {
+const StatsBar: React.FC<StatsBarProps> = ({ value }) => {
   return (
     <Container>
       <Bar value={value}>
         <LabelStyles>{value}</LabelStyles>
       </Bar>
     </Container>
-  )
+  );
 };
+
 export default StatsBar;
 
 const Container = styled.div`

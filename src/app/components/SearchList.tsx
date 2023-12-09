@@ -6,8 +6,8 @@ import PuffLoader from "react-spinners/PuffLoader";
 import { getPokemon } from "../../api/pokemons";
 import { useDebounce } from "../../helpers/useDebounce";
 import Card from "./Card";
-import Pagination from "./Pagination";
-import EmptySearchResult from "./EmptySearchResult";
+import Pagination from "./ui/Pagination";
+import EmptySearchResult from "./ui/EmptySearchResult";
 
 interface PokemonListProps {
   pokemonData: PokemonListResponse;
@@ -57,26 +57,30 @@ const SearchList: React.FC<PokemonListProps> = ({ pokemonData, totalCount, limit
         color="#7d0cad" size={100}
         cssOverride={{ position: "absolute", top: "50vh", right: "50vw" }}
       />
-      {error ? <EmptySearchResult text="Oooops! Couldn't find that Pokémon, please try again!" /> : (
-        <GridContainer>
-          {searchResponse ? (
-            <Card
-              name={searchResponse.name}
-              id={searchResponse.id}
-            />
-          ) : (
-            !isLoading && pokemonData.results.map((pokemon, index) => {
-              return (
-                <Card
-                  key={index}
-                  name={pokemon.name}
-                  url={pokemon.url}
-                />
-              );
-            })
-          )}
-        </GridContainer>
-      )}
+      {error ?
+        <EmptySearchResult
+          text="Oooops! Couldn't find that Pokémon, please try again!"
+          imageUrl="./assets/psyduck-question.gif"
+        /> : (
+          <GridContainer>
+            {searchResponse ? (
+              <Card
+                name={searchResponse.name}
+                id={searchResponse.id}
+              />
+            ) : (
+              !isLoading && pokemonData.results.map((pokemon, index) => {
+                return (
+                  <Card
+                    key={index}
+                    name={pokemon.name}
+                    url={pokemon.url}
+                  />
+                );
+              })
+            )}
+          </GridContainer>
+        )}
       {!error && !isLoading &&
         <Pagination
           totalCount={totalCount}

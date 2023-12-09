@@ -8,6 +8,11 @@ interface PokemonListResponse {
   }[];
 }
 
+interface Trait {
+  name: string;
+  url: string;
+}
+
 interface Pokemon {
   name: string;
   id: number;
@@ -23,10 +28,7 @@ interface Pokemon {
     }
   }
   types: {
-    type: {
-      name: string,
-      url: string,
-    }
+    type: Trait;
   }[]
   stats: {
     base_stat: number;
@@ -37,9 +39,7 @@ interface Pokemon {
     }
   }[];
   abilities: {
-    ability: {
-      name: string;
-    }
+    ability: Trait;
   }[];
 }
 

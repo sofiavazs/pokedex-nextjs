@@ -1,20 +1,20 @@
 "use client";
-
 import { styled } from "styled-components";
-
 
 interface EmptySearchResultProps {
   text: string;
+  imageUrl?: string;
 }
 
-const EmptySearchResult: React.FC<EmptySearchResultProps> = ({ text }) => {
+const EmptySearchResult: React.FC<EmptySearchResultProps> = ({ text, imageUrl }) => {
   return (
     <MessageContainer>
       <h2>{text}</h2>
-      <img src="./assets/psyduck-question.gif" />
+      <img src={imageUrl} />
     </MessageContainer>
   );
 };
+
 export default EmptySearchResult;
 
 const MessageContainer = styled.div`

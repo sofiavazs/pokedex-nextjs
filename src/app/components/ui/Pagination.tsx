@@ -44,8 +44,9 @@ const Pagination: React.FC<PaginationProps> = ({ totalCount, limit }) => {
         <span></span>
       </button>
     </PaginationWrapper>
-  )
+  );
 };
+
 export default Pagination;
 
 const PaginationWrapper = styled.div`
