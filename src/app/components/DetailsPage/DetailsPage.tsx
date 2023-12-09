@@ -16,13 +16,16 @@ interface Props {
 
 const DetailsPage: React.FC<Props> = ({ pokemon, evolutionChainId }) => {
   const [evolutionResponse, setEvolutionResponse] = useState<EvolutionChain | undefined>(undefined);
+  const [error, setError] = useState(undefined);
   const hasEvolution = evolutionResponse && evolutionResponse?.chain.evolves_to.length > 0;
 
   useEffect(() => {
     if (evolutionChainId) {
       getEvolutionChain(evolutionChainId).then((response) => {
         setEvolutionResponse(response);
-      })
+      }).catch((error) => {
+        setError(error.message);
+      });
     }
   }, [evolutionChainId]);
 
@@ -35,7 +38,7 @@ const DetailsPage: React.FC<Props> = ({ pokemon, evolutionChainId }) => {
         <StyledSection>
           <h2>{pokemon.name}</h2>
           <img src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.name} />
-          {hasEvolution &&
+          {hasEvolution && !error &&
             <>
               <EvolutionChain evolutionResponse={evolutionResponse} />
             </>
@@ -77,7 +80,7 @@ const Wrapper = styled.div`
   display: flex;
   width: 80vw;
   justify-content: space-evenly;
-  background: white;
+  background: #ffffffa3;
   margin: auto;
   padding: 2rem 1rem 1rem 1rem;
   border-radius: 1rem;
@@ -95,6 +98,10 @@ const Wrapper = styled.div`
     max-height: 200px;
     margin-bottom: 2rem;
   }
+
+  @media screen and (max-width: 600px) {
+    display: block;
+  }
 `;
 
 const StyledSection = styled.section`
@@ -108,6 +115,11 @@ const StyledSection = styled.section`
     flex-direction: column;
     width: 100%;
     padding-top: 1rem;
+
+    @media screen and (max-width: 600px) {
+      padding-top: 2rem;
+      margin-left: 4rem;
+    }
   }
 `;
 
@@ -127,5 +139,10 @@ const TraitsContainer = styled.div`
       li {
         margin: 8px;
       }
+    }
+
+    @media screen and (max-width: 600px) {
+      justify-content: center;
+      padding-top: 2rem;
     }
 `;

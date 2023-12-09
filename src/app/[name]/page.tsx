@@ -1,5 +1,5 @@
 import { getPokemon, getPokemonSpecies } from "../../api/pokemons";
-import DetailsPage from "../components/DetailsPage/DetailsPage"
+import DetailsPage from "../components/DetailsPage/DetailsPage";
 
 export default async function Page({ params }: { params: { name: string } }) {
   const { name } = params;
@@ -8,11 +8,9 @@ export default async function Page({ params }: { params: { name: string } }) {
   const evolutionChainId = pokemonSpecies.evolution_chain.url.split('evolution-chain/')[1]?.split('/')[0];
 
   return (
-    <>
-      <DetailsPage
-        pokemon={pokemon}
-        evolutionChainId={evolutionChainId}
-      />
-    </>
-  )
+    <DetailsPage
+      pokemon={pokemon}
+      evolutionChainId={evolutionChainId}
+    />
+  );
 };

@@ -20,7 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <StyledComponentsRegistry>
-          <Header headerText={"Pokémon Explorer"} />
+          <Header
+            headerText={"Pokémon Explorer"}
+            icon={"./assets/icon-pokeball.svg"}
+            url={"/"}
+          />
           <main>
             {children}
           </main>

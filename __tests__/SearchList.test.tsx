@@ -7,7 +7,7 @@ import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import SearchList from "@/app/components/SearchList";
 
 // Mock to skip the testing on a child component
-jest.mock("../src/app/components/Pagination", () => {
+jest.mock("../src/app/components/ui/Pagination", () => {
   return {
     __esModule: true,
     default: () => {

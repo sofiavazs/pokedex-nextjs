@@ -62,8 +62,8 @@ const StyledLink = styled(Link)`
   }
 
   img {
-    width: 200px;
-    height: 200px;
+    max-width: 175px;
+    max-height: 175px;
     align-self: center;
   }
 `;

@@ -5,7 +5,7 @@ import PuffLoader from "react-spinners/PuffLoader";
 
 import { getPokemon } from "../../api/pokemons";
 import { useDebounce } from "../../helpers/useDebounce";
-import Card from "./Card";
+import Card from "./ui/Card";
 import Pagination from "./ui/Pagination";
 import EmptySearchResult from "./ui/EmptySearchResult";
 
@@ -97,11 +97,15 @@ const Container = styled.div`
   flex-direction: column;
   padding: 0 5rem;
   margin-bottom: 2rem;
+
+  @media screen and (max-width: 600px) {
+    padding: 0 2rem;
+  }
 `;
 
 const SearchBoxWrapper = styled.div`
   display: flex;
-  width: 50vw;
+  width: 30vw;
   text-align: center;
   align-self: center;
   flex-direction: column;
@@ -117,7 +121,24 @@ const SearchBoxWrapper = styled.div`
     border: 1px solid #dfe1e5;
     border-radius: 1rem;
     margin-top: 1rem;
+    background-color: #ffffffd9;
+    background-image: url("./assets/icon-magnifying-glass.svg");
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 98%;
+
+    &:placeholder-shown {
+      text-overflow: ellipsis;
+    }
+
+    &:hover {
+      border: 1px solid #0c67ad;
+    }
   }
+
+  @media screen and (max-width: 600px) {
+      width: 80vw;
+    }
 `;
 
 const GridContainer = styled.div`

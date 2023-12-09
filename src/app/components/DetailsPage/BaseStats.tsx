@@ -1,3 +1,4 @@
+import React from "react";
 import StatsBar from "../ui/StatsBar";
 
 interface BaseStatsProps {
@@ -10,10 +11,9 @@ const BaseStats: React.FC<BaseStatsProps> = ({ pokemon }) => {
       <h2>Base Stats</h2>
       {pokemon.stats.map((item, index) => {
         return (
-          <div key={index}>
-            <span>{item.stat.name}</span>
-            <StatsBar value={item.base_stat} />
-          </div>
+          <React.Fragment key={index}>
+            <StatsBar label={item.stat.name} value={item.base_stat} />
+          </React.Fragment>
         )
       })}
     </div>
