@@ -18,7 +18,7 @@ const Card: React.FC<CardProps> = ({ name, url, id }) => {
       <StyledLink href={name} rel="noopener noreferrer">
         <h2>{name}</h2>
         <img src={imageUrl} alt={name} />
-        <p>View Details {">>"}</p>
+        <p>View {">>"}</p>
       </StyledLink>
     </>
   );
@@ -47,17 +47,17 @@ const StyledLink = styled(Link)`
   }
 
   h2 {
-    color: #1b3f68;
+    color: #ef526f;
     align-self: center;
     text-transform: capitalize;
   }
 
   p {
     font-size: 1.25rem;
-    color: #007580;
+    color:#1b395e;
 
     &:hover {
-      color:#0c67ad
+      color: #0c67ad;
     }
   }
 

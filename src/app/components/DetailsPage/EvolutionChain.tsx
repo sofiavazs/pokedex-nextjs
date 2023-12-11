@@ -15,7 +15,11 @@ const EvolutionChain: React.FC<EvolutionChainProps> = ({ evolutionResponse }) =>
       <h2>Evolution Chain</h2>
       <Container>
         <div>
-          <img className="evolution-img" src={firstInChainImageUrl} />
+          <img
+            className="evolution-img"
+            src={firstInChainImageUrl}
+            alt={evolutionResponse?.chain.species.name}
+          />
           <p>{evolutionResponse?.chain.species.name}</p>
         </div>
         {evolutionResponse?.chain.evolves_to.map((e, i) => {
@@ -26,11 +30,19 @@ const EvolutionChain: React.FC<EvolutionChainProps> = ({ evolutionResponse }) =>
           return (
             <React.Fragment key={i}>
               <div>
-                <img className="evolution-img" src={secondInChainImageUrl} />
+                <img
+                  className="evolution-img"
+                  src={secondInChainImageUrl}
+                  alt={e.species.name}
+                />
                 <p>{e.species.name}</p>
               </div>
               <div>
-                <img className="evolution-img" src={thirdInChainImageUrl} />
+                <img
+                  className="evolution-img"
+                  src={thirdInChainImageUrl}
+                  alt={e.evolves_to[0]?.species.name}
+                />
                 <p>{e.evolves_to[0]?.species.name}</p>
               </div>
             </React.Fragment>

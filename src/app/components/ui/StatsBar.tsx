@@ -41,7 +41,7 @@ const Bar = styled.div<{ value: number }>`
 const LabelStyles = styled.span<{ value?: number }>`
   padding: 5px;
   color: "#000";
-  font-weight: 'bold';
+  font-weight: 900;
 
   ${({ value }) => value && `
     color: #fff;

@@ -33,7 +33,7 @@ interface Pokemon {
   stats: {
     base_stat: number;
     effort: number;
-    stat:{
+    stat: {
       name: string,
       url: string,
     }

@@ -14,12 +14,12 @@ const Header: React.FC<Props> = ({ headerText, icon, url }) => {
       {url ? (
         <Link href={url}>
           <h1>{headerText}</h1>
-          <img src={icon} />
+          <img src={icon} alt="page icon" />
         </Link>
       ) : (
         <>
           <h1>{headerText}</h1>
-          <img src={icon} />
+          <img src={icon} alt="page icon" />
         </>
       )}
     </StyledHeader>
@@ -55,6 +55,6 @@ const StyledHeader = styled.header`
     display: flex;
     text-decoration: none;
     align-items: center;
-    color: #342022d0;
+    color: #ef526f;
   }
 `;

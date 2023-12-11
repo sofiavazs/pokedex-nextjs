@@ -5,7 +5,7 @@ body {
   scroll-behavior: smooth;
   margin: 0;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  background-image: linear-gradient(0deg, #f6faa8d6 0%, #ff7da8c4 32%, #99b5f5b0 68%, #b2f1e0b8 97%);
+  background-color: #ecfcff;
 }
 
 main {

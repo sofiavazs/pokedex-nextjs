@@ -63,6 +63,7 @@ const PageContainer = styled.div`
 
   a {
     display: flex;
+    width: 100px;
     text-decoration: none;
     font-size: 1.5rem;
     color: #063539;
@@ -117,8 +118,12 @@ const StyledSection = styled.section`
     padding-top: 1rem;
 
     @media screen and (max-width: 600px) {
+      max-width: 80%;
       padding-top: 2rem;
-      margin-left: 4rem;
+
+      h2 {
+        text-align: center;
+      }
     }
   }
 `;

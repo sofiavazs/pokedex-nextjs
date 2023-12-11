@@ -10,7 +10,7 @@ const EmptySearchResult: React.FC<EmptySearchResultProps> = ({ text, imageUrl })
   return (
     <MessageContainer>
       <h2>{text}</h2>
-      <img src={imageUrl} />
+      <img src={imageUrl} alt="gif" />
     </MessageContainer>
   );
 };
