@@ -25,19 +25,24 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Project Structure
 
 ```public/assets```: contains the asset images.
+
 ```src/api/pokemons.ts```: contains all API requests.
+
 ```src/app```:
-    ```layout.tsx```: Root of the app, contains the metadata object, renders the ```Header.tsx``` and children
-    ```page.tsx```: Home page, renders the ```SearchList.tsx```component
-    ```[name]/page```: renders the ```DetailsPage.tsx``` component by passing in the specific pokémon data
-    ```src/components```:
-        -```SearchList.tsx```: displays all pokémons and renders the pagination component. If the user performs a search, the exact match pokémon will be displayed. If there's no match a message is displayed to the user informing that.
-    ```src/components/DetailsPage```:
-        - ```DetailsPage.tsx```: renders the pokémon name and image and the different components to display the pokémon's details:
-        - ```EvolutionChain.tsx```: renders the evolution chain with name and image of the pokémons it evolves to.
-        - ```TraitList.tsx```: accepts props and renders Types and Abilities list accordingly
-         - ```BaseStats.tsx```: renders the different stats
-    ```src/components/ui```: contains all the reusable UI   components: ```Card.tsx```, ```EmptyState.tsx```, ```Header.tsx```, ```Pagination.tsx``` and ```StatsBar.tsx```
+  ```layout.tsx```: Root of the app, contains the metadata object, renders the ```Header.tsx``` and children.
+  ```page.tsx```: Home page, renders the ```SearchList.tsx```component.
+  ```[name]/page```: renders the ```DetailsPage.tsx``` component by passing in the specific pokémon data.
+
+```src/components```:
+  ```SearchList.tsx```: displays all pokémons and renders the pagination component. If the user performs a search, the exact match pokémon will be displayed. If there's no match a message is displayed to the user informing that.
+
+  ```src/components/DetailsPage```:
+    ```DetailsPage.tsx```: renders the pokémon name and image and the different components to display the pokémon's details:
+    ```EvolutionChain.tsx```: renders the evolution chain with name and image of the pokémons it evolves to.
+    ```TraitList.tsx```: accepts props and renders Types and Abilities list accordingly
+    ```BaseStats.tsx```: renders the different stats.
+
+  ```src/components/ui```: contains all the reusable UI   components: ```Card.tsx```, ```EmptyState.tsx```, ```Header.tsx```, ```Pagination.tsx``` and ```StatsBar.tsx```
     ```src/app/lib```: contains all the project interfaces and the styled components registry file
     ```src/app/helpers```: contains helper hook/functions
 
