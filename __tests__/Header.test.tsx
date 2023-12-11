@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { render, screen, waitFor } from '@testing-library/react';
-import Header from '@/app/components/Header';
+import Header from '@/app/components/ui/Header';
 import '@testing-library/jest-dom';
 
 describe('Header', () => {

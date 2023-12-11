@@ -22,8 +22,8 @@ export default async function Home({
     <>
       <Suspense
         key={currentPage}
-        fallback={<PuffLoader color="#7d0cad" size={100} cssOverride={{ position: "absolute", top: "50vh", right: "50vw" }}
-        />}>
+        fallback={<PuffLoader color="#ef526f" size={100} cssOverride={{ position: "absolute", top: "50vh", right: "50vw" }} />}
+      >
         <SearchList
           pokemonData={pokemonList}
           totalCount={pokemonList.count}

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import StyledComponentsRegistry from './lib/StyledComponentsRegistry';
-import Header from './components/Header';
+import Header from './components/ui/Header';
 import './globals.css';
 
 export const metadata: Metadata = {

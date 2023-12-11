@@ -27,7 +27,7 @@ const Container = styled.div`
 
 const fill = keyframes<{ value: number }>`
   0% {width: 0%}
-  100% {width: value}
+  100% {width: 100%}
 `;
 
 const Bar = styled.div<{ value: number }>`

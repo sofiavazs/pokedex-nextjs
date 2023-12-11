@@ -6,7 +6,7 @@ interface EmptySearchResultProps {
   imageUrl?: string;
 }
 
-const EmptySearchResult: React.FC<EmptySearchResultProps> = ({ text, imageUrl }) => {
+const EmptyState: React.FC<EmptySearchResultProps> = ({ text, imageUrl }) => {
   return (
     <MessageContainer>
       <h2>{text}</h2>
@@ -15,7 +15,7 @@ const EmptySearchResult: React.FC<EmptySearchResultProps> = ({ text, imageUrl })
   );
 };
 
-export default EmptySearchResult;
+export default EmptyState;
 
 const MessageContainer = styled.div`
   display: flex;

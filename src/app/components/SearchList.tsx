@@ -7,7 +7,7 @@ import { getPokemon } from "../../api/pokemons";
 import { useDebounce } from "../../helpers/useDebounce";
 import Card from "./ui/Card";
 import Pagination from "./ui/Pagination";
-import EmptySearchResult from "./ui/EmptySearchResult";
+import EmptyState from "./ui/EmptyState";
 
 interface PokemonListProps {
   pokemonData: PokemonListResponse;
@@ -48,17 +48,18 @@ const SearchList: React.FC<PokemonListProps> = ({ pokemonData, totalCount, limit
           type="text"
           id="pokemonName"
           placeholder="example: pikachu, psyduck etc"
+          aria-label="Search Pokémon"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
       </SearchBoxWrapper>
       <PuffLoader
         loading={isLoading}
-        color="#7d0cad" size={100}
+        color="#ef526f" size={100}
         cssOverride={{ position: "absolute", top: "50vh", right: "50vw" }}
       />
       {error ?
-        <EmptySearchResult
+        <EmptyState
           text="Oooops! Couldn't find that Pokémon, please try again!"
           imageUrl="./assets/psyduck-question.gif"
         /> : (

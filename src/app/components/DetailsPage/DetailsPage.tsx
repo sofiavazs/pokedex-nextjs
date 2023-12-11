@@ -11,7 +11,7 @@ import TraitList from "./TraitList";
 
 interface Props {
   pokemon: Pokemon;
-  evolutionChainId: string;
+  evolutionChainId?: string;
 }
 
 const DetailsPage: React.FC<Props> = ({ pokemon, evolutionChainId }) => {
@@ -38,11 +38,13 @@ const DetailsPage: React.FC<Props> = ({ pokemon, evolutionChainId }) => {
         <StyledSection>
           <h2>{pokemon.name}</h2>
           <img src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.name} />
-          {hasEvolution && !error &&
+          {hasEvolution && !error ? (
             <>
               <EvolutionChain evolutionResponse={evolutionResponse} />
             </>
-          }
+          ) : (
+            <p>This Pokémon does not evolve.</p>
+          )}
         </StyledSection>
         <StyledSection>
           <TraitsContainer>

@@ -22,6 +22,7 @@ const EvolutionChain: React.FC<EvolutionChainProps> = ({ evolutionResponse }) =>
           />
           <p>{evolutionResponse?.chain.species.name}</p>
         </div>
+        <span className="evolution-arrow" />
         {evolutionResponse?.chain.evolves_to.map((e, i) => {
           const secondInChainId = e.species.url.split('pokemon-species/')[1]?.split('/')[0];
           const thirdInChainId = e.evolves_to[0]?.species.url.split('pokemon-species/')[1]?.split('/')[0];
@@ -37,6 +38,7 @@ const EvolutionChain: React.FC<EvolutionChainProps> = ({ evolutionResponse }) =>
                 />
                 <p>{e.species.name}</p>
               </div>
+              <span className="evolution-arrow" />
               <div>
                 <img
                   className="evolution-img"
@@ -58,6 +60,10 @@ const Container = styled.div`
   display: flex;
   padding: 8px;
   align-items: baseline;
+
+  .evolution-arrow::after {
+    content: ">>";
+  }
 
   div {
     display: flex;
