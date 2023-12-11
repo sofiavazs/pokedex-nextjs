@@ -15,6 +15,6 @@ describe('Header', () => {
 
     waitFor(() => expect(heading).toBeInTheDocument());
   })
-})
+});
 
 
