@@ -10,7 +10,7 @@ The details page show the following information:
 - Evolution chain
 - Base stats (hp, attack, defense, special-attack, special-defense, speed)
 
-## Getting Started
+## How to run locally
 
 First, run ```npm install``` to install the dependencies needed.
 
@@ -21,6 +21,11 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Tech Stack
+- Typescript
+- Next.js
+- Styled Components
 
 ## Project Structure
 
@@ -55,6 +60,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ```src/app/lib```: contains all the project interfaces and the styled components registry file.
 
 ```src/app/helpers```: contains helper hook/functions.
+
+## Styling
+ Styling was done with styled components (CSS-in-JS) with responsive design in mind. My approach was to keep the styled components within the component they're being used - in the future I would like to extract some of them and make them reusable so they can be used globally.
+
+## Accessibility
+Accessibility checks performed with lighthouse, accessible navigation done manually.
 
 ## View it live
 [https://pokemonexplorer.vercel.app/](https://pokemonexplorer.vercel.app/)
