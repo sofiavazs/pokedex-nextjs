@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import styled from "styled-components";
 
@@ -6,8 +6,12 @@ interface EvolutionChainProps {
   evolutionResponse: EvolutionChain;
 }
 
-const EvolutionChain: React.FC<EvolutionChainProps> = ({ evolutionResponse }) => {
-  const firstInChainId = evolutionResponse?.chain.species.url.split('pokemon-species/')[1]?.split('/')[0];
+const EvolutionChain: React.FC<EvolutionChainProps> = ({
+  evolutionResponse,
+}) => {
+  const firstInChainId = evolutionResponse?.chain.species.url
+    .split("pokemon-species/")[1]
+    ?.split("/")[0];
   const firstInChainImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${firstInChainId}.svg`;
 
   return (
@@ -24,8 +28,12 @@ const EvolutionChain: React.FC<EvolutionChainProps> = ({ evolutionResponse }) =>
         </div>
         <span className="evolution-arrow" />
         {evolutionResponse?.chain.evolves_to.map((e, i) => {
-          const secondInChainId = e.species.url.split('pokemon-species/')[1]?.split('/')[0];
-          const thirdInChainId = e.evolves_to[0]?.species.url.split('pokemon-species/')[1]?.split('/')[0];
+          const secondInChainId = e.species.url
+            .split("pokemon-species/")[1]
+            ?.split("/")[0];
+          const thirdInChainId = e.evolves_to[0]?.species.url
+            .split("pokemon-species/")[1]
+            ?.split("/")[0];
           const secondInChainImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${secondInChainId}.svg`;
           const thirdInChainImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${thirdInChainId}.svg`;
           return (
@@ -50,7 +58,8 @@ const EvolutionChain: React.FC<EvolutionChainProps> = ({ evolutionResponse }) =>
             </React.Fragment>
           );
         })}
-      </Container></>
+      </Container>
+    </>
   );
 };
 
@@ -58,6 +67,7 @@ export default EvolutionChain;
 
 const Container = styled.div`
   display: flex;
+  flex-wrap: wrap;
   padding: 8px;
   align-items: baseline;
 

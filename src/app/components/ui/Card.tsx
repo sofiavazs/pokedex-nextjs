@@ -6,11 +6,11 @@ interface CardProps {
   name: string;
   url?: string;
   image?: string;
-  id?: number
+  id?: number;
 }
 
 const Card: React.FC<CardProps> = ({ name, url, id }) => {
-  const pokemonId = url ? url?.split('pokemon/')[1]?.split('/')[0] : id;
+  const pokemonId = url ? url?.split("pokemon/")[1]?.split("/")[0] : id;
   const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
 
   return (
@@ -33,7 +33,7 @@ const StyledLink = styled(Link)`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background: rgba(255, 255, 255, 0.175);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 1rem;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(6.5px);
@@ -54,7 +54,7 @@ const StyledLink = styled(Link)`
 
   p {
     font-size: 1.25rem;
-    color:#1b395e;
+    color: #1b395e;
 
     &:hover {
       color: #0c67ad;
@@ -67,4 +67,3 @@ const StyledLink = styled(Link)`
     align-self: center;
   }
 `;
-
