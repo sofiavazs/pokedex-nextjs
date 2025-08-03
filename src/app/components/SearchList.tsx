@@ -15,79 +15,79 @@ interface PokemonListProps {
   limit: number;
 }
 
-const SearchList: React.FC<PokemonListProps> = ({ pokemonData, totalCount, limit }) => {
-  const [searchResponse, setSearchResponse] = useState<Pokemon | undefined>(undefined);
+const SearchList: React.FC<PokemonListProps> = ({
+  pokemonData,
+  totalCount,
+  limit,
+}) => {
+  const [searchResponse, setSearchResponse] = useState<Pokemon | undefined>(
+    undefined
+  );
   const [search, setSearch] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState(undefined);
-  const debouncedValue = useDebounce<string>(search, 1000);
+  const debouncedValue = useDebounce(search, 1000);
   const formattedSearch = search.toLowerCase();
 
   useEffect(() => {
     if (search.length > 0) {
-      setIsLoading(true)
-      getPokemon(formattedSearch).then((response) => {
-        setSearchResponse(response);
-      }).catch((error) => {
-        setError(error.message);
-      }).finally(() => {
-        setIsLoading(false);
-      });
+      setIsLoading(true);
+      getPokemon(formattedSearch)
+        .then((response) => {
+          setSearchResponse(response);
+        })
+        .catch((error) => {
+          setError(error.message);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
     setSearchResponse(undefined);
     setError(undefined);
   }, [debouncedValue]);
 
-
   return (
     <Container>
       <SearchBoxWrapper>
         <label htmlFor="pokemonName">Search Pokémon</label>
-        <input
+        <StyledInput
           autoComplete="off"
-          type="text"
+          type="search"
           id="pokemonName"
           placeholder="example: pikachu, psyduck etc"
           aria-label="Search Pokémon"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          $searching={search.length > 0}
         />
       </SearchBoxWrapper>
       <PuffLoader
         loading={isLoading}
-        color="#ef526f" size={100}
+        color="#ef526f"
+        size={100}
         cssOverride={{ position: "absolute", top: "50vh", right: "50vw" }}
       />
-      {error ?
+      {error ? (
         <EmptyState
           text="Oooops! Couldn't find that Pokémon, please try again!"
           imageUrl="./assets/psyduck-question.gif"
-        /> : (
-          <GridContainer>
-            {searchResponse ? (
-              <Card
-                name={searchResponse.name}
-                id={searchResponse.id}
-              />
-            ) : (
-              !isLoading && pokemonData.results.map((pokemon, index) => {
-                return (
-                  <Card
-                    key={index}
-                    name={pokemon.name}
-                    url={pokemon.url}
-                  />
-                );
-              })
-            )}
-          </GridContainer>
-        )}
-      {!error && !isLoading &&
-        <Pagination
-          totalCount={totalCount}
-          limit={limit}
         />
-      }
+      ) : (
+        <GridContainer>
+          {searchResponse ? (
+            <Card name={searchResponse.name} id={searchResponse.id} />
+          ) : (
+            !isLoading &&
+            pokemonData.results.map((pokemon, index) => {
+              return <Card key={index} name={pokemon.name} url={pokemon.url} />;
+            })
+          )}
+        </GridContainer>
+      )}
+      {!error && !isLoading && !searchResponse && (
+        <Pagination totalCount={totalCount} limit={limit} />
+      )}
     </Container>
   );
 };
@@ -116,41 +116,55 @@ const SearchBoxWrapper = styled.div`
     font-size: 1.5rem;
   }
 
-  input[type=text] {
+  @media screen and (max-width: 600px) {
+    width: 80vw;
+  }
+`;
+
+const StyledInput = styled.input<{ $searching?: boolean }>`
+  padding: 1.5rem;
+  border: 1px solid #dfe1e5;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  background-color: #ffffffd9;
+  background-image: ${(props) =>
+    !props.$searching && 'url("./assets/icon-magnifying-glass.svg")'};
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 95%;
+
+  &:placeholder-shown {
+    text-overflow: ellipsis;
+  }
+
+  &:hover {
+    border: 1px solid #0c67ad;
+  }
+
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    background-size: 1.5rem 1.5rem;
     height: 1.5rem;
-    padding: 1rem;
-    border: 1px solid #dfe1e5;
-    border-radius: 1rem;
-    margin-top: 1rem;
-    background-color: #ffffffd9;
-    background-image: url("./assets/icon-magnifying-glass.svg");
-    background-repeat: no-repeat;
-    background-position-y: center;
-    background-position-x: 98%;
-
-    &:placeholder-shown {
-      text-overflow: ellipsis;
-    }
-
-    &:hover {
-      border: 1px solid #0c67ad;
-    }
+    width: 1.5rem;
+    background-image: url("./assets/icon-close.svg");
+    cursor: pointer;
   }
 
   @media screen and (max-width: 600px) {
-      width: 80vw;
-    }
+    width: 80vw;
+  }
 `;
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(30%, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
 
   @media screen and (max-width: 600px) {
-    grid-template-columns: repeat(auto-fill,minmax(100%, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   }
 
   @media screen and (min-width: 600px) and (max-width: 992px) {
-    grid-template-columns: repeat(auto-fill,minmax(50%, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
   }
 `;
